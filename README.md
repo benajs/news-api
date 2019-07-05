@@ -13,6 +13,7 @@ Things you may want to cover:
 
 * Services (job queues, cache servers, search engines, etc.):<br>
       bundle exec rake sync:news
+      <br> To feed the news in postgres db
 
 * Deployment instructions
       <br>Authorization takes place using the current_user in clearance 
