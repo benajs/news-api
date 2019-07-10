@@ -1,0 +1,34 @@
+﻿
+Api rails app:
+
+rails new news-api --api -d postgresql
+
+Clearance:
+
+
+Rails alter feed table:
+
+rails g scaffold feed name:string url:string
+
+rails g migration AddColumnsToFeed site:string isXML:boolean summary:string content:string author:string category:string published:string others:string
+
+seeds
+
+
+Feed.create(name: "The next web", url: "http://feeds.feedburner.com/TheNextWeb")
+Feed.create(name: "verge", url: "https://www.theverge.com/rss/index.xml")
+Feed.create(name: "Tech Crunch", url: "http://feeds.feedburner.com/TechCrunch/")
+Feed.create(name: "Wired", url: "https://www.wired.com/feed/rss")
+Feed.create(name: "Gizmodo", url: "https://gizmodo.com/rss")
+Feed.create(name: "Digital Trends", url: "https://www.digitaltrends.com/feed/")
+Feed.create(name: "Tech Radar", url: "https://www.techradar.com/rss")
+Feed.create(name: "Tech Meme", url: "https://www.techmeme.com/feed.xml")
+Feed.create(name: "Ars Technica", url: "http://feeds.arstechnica.com/arstechnica/technology-lab")
+Feed.create(name: "Venture Beat", url: "http://feeds.feedburner.com/venturebeat/SZYF")
+Feed.create(name: "Ruby on rails", url: "https://weblog.rubyonrails.org/feed/atom.xml")
+Feed.create(name: "CNET", url: "https://www.cnet.com/rss/news/")
+Feed.create(name: "Technology News | The New York Times", url: "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml")
+Feed.create(name: "MIT Technology Review", url: "https://www.technologyreview.com/topnews.rss")
+#Feed.create(name: "", url: "")
+
+
