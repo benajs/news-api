@@ -32,3 +32,25 @@ Feed.create(name: "MIT Technology Review", url: "https://www.technologyreview.co
 #Feed.create(name: "", url: "")
 
 
+Sign in request 
+
+http://localhost:3000/session?session[email]=benajs@gmail.com&session[password]=12345678&commit=Sign+in
+
+session[email]
+benajs@gmail.com
+session[password]
+12345678
+commit
+Sign+in
+
+Disable authenticity_token using 
+
+works only for application not for api skip_before_action :verify_authenticity_token
+ in application controller
+
+reference: https://stackoverflow.com/questions/34251400/invalid-authenticity-token-on-post
+
+for API: include ActionController::RequestForgeryProtection in ApplicationController
+
+reference: https://github.com/thoughtbot/clearance/issues/435
+
