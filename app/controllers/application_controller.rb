@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+  include ActionController::RequestForgeryProtection
   include Clearance::Controller
 
   def authenticate_via_token

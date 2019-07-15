@@ -1,4 +1,4 @@
-require_relative 'boot'
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -19,6 +19,8 @@ Bundler.require(*Rails.groups)
 
 module NewsApi
   class Application < Rails::Application
+    #  config.action_controller.default_protect_from_forgery = false
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
