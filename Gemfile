@@ -46,3 +46,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'clearance'
 gem "feedjira"
 gem 'nokogiri'
+gem 'rspec'
+gem 'rspec-rails'

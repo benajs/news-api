@@ -20,16 +20,16 @@ ActiveRecord::Schema.define(version: 2019_07_11_062704) do
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "site", default: "url"
+    t.string "site"
     t.boolean "isXML", default: true
     t.string "summary", default: "title"
     t.string "content", default: "content"
     t.string "author", default: "author"
-    t.string "category", default: "categories"
-    t.string "published", default: "published"
+    t.string "category", default: "category"
+    t.string "published", default: "pubDate"
     t.string "others", default: "updated"
-    t.string "story", default: "entry"
-    t.string "reference", default: "url"
+    t.string "story", default: "item"
+    t.string "reference", default: "link"
   end
 
   create_table "news", force: :cascade do |t|
