@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'database_cleaner'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
@@ -48,3 +49,7 @@ gem "feedjira"
 gem 'nokogiri'
 gem 'rspec'
 gem 'rspec-rails'
+gem 'sidekiq'
+gem 'redis-rails'
+gem 'whenever'
+gem 'sidekiq-client-cli'

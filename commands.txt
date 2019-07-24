@@ -54,3 +54,22 @@ for API: include ActionController::RequestForgeryProtection in ApplicationContro
 
 reference: https://github.com/thoughtbot/clearance/issues/435
 
+
+DB Query:
+CREATE EXTENSION pg_trgm;
+
+
+
+
+select n1.title,n2.title from news n1, news n2 where n1.id !=n2.id and n1.title_tokens @@ to_tsquery(array_to_string(tsvector_to_array(n2.title_tokens),',',''));
+
+
+
+select * from (select n1.title, n2.title,similarity(array_to_string(tsvector_to_array(to_tsvector(n1.title)),' ',''),array_to_string(tsvector_to_array(to_tsvector(n2.title)),' ','')) AS rank
+from news n1, news n2 where n1.id != n2.id)ben2 where rank > 0.2;
+
+
+ export PATH="$PATH:/home/francium/flutter_sdk/flutter/bin"
+
+
+

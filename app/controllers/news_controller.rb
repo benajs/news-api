@@ -1,6 +1,7 @@
 class NewsController < ApplicationController
   before_action :authenticate_via_token
   before_action :set_news, only: [:show, :update, :destroy]
+  #before_action :news_feeder_job
 
   # GET /news
   def index
@@ -40,13 +41,18 @@ class NewsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_news
-      @news = News.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def news_params
-      params.require(:news).permit(:title, :content, :category)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_news
+    @news = News.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def news_params
+    params.require(:news).permit(:title, :content, :category)
+  end
+
+  def news_feeder_job
+    NewsFeederJob.perform_later
+  end
 end
