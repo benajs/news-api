@@ -5,24 +5,31 @@ require "open-uri"
 feeds = Feed.all
 feeds.each do |feed|
   RSpec.describe FeederWorker, type: :worker do
-    content = Nokogiri::HTML(open(feed[:url]))
+    doc = Nokogiri::HTML(open(feed[:url]))
+
+    entry = doc.css(feed[:story]).first
+    story = Story.new(feed, entry)
 
     it "Feed has stories in it " + feed[:name] do
-      expect(content.css(feed[:story])).not_to be_empty
+      expect(doc.css(feed[:story])).not_to be_empty
     end
 
     it "Feed has title in it " + feed[:name] do
-      expect(content.css(feed[:summary]).text.strip).not_to be_empty
+      expect(story.title).not_to be_empty
     end
     it "Feed has author in it " + feed[:name] do
-      p content.css(feed[:author]).text.strip
-      expect(content.css(feed[:author]).text.strip).not_to be_empty
+      expect(story.author).not_to be_empty
     end
     it "Feed has published date in it " + feed[:name] do
-      expect(content.css(feed[:published]).text.strip).not_to be_empty
+      expect(story.published).not_to be_empty
     end
+
+    it "Feed has link in it " + feed[:name] do
+      expect(story.link).not_to be_empty
+    end
+
     it "Feed has content in it " + feed[:name] do
-      expect(content.css(feed[:content]).text.strip).not_to be_empty
+      expect(story.content).not_to be_empty
     end
   end
 end

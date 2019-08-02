@@ -97,3 +97,17 @@ select * from feeds
 update feeds 
 
 delete from feeds where id =5
+
+select * from news order by id
+
+delete from  news
+
+select * from feeds
+
+select (content) from news where id = 248
+
+select * from news 
+where 
+order by id
+
+update feeds set story='.c-compact-river__entry' where id=1

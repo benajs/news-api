@@ -8,20 +8,59 @@
 
 User.create(email: "benajs@gmail.com", password: "12345678")
 
-Feed.create(name: "Verge", url: "https://www.theverge.com/rss/index.xml", site: "https://www.theverge.com", isXML: true, story: "entry", summary: "title", content: "content", author: "author", published: "published", reference: "link")
-Feed.create(name: "The next web", url: "https://thenextweb.com/latest/", site: "https://thenextweb.com",
-            isXML: false, story: ".story", summary: ".story-title",
-            content: ".story-chunk", author: ".story-byline",
+Feed.create(name: "Verge", url: "https://www.theverge.com/", site: "https://www.theverge.com",
+            story: ".c-compact-river__entry", summary: ".c-entry-box--compact__title",
+            content: ".c-entry-content", author: ".c-byline__item a",
+            published: "time", reference: ".c-entry-box--compact__title a")
+Feed.create(name: "The next web", url: "https://thenextweb.com/security/", site: "https://thenextweb.com",
+            story: ".story", summary: ".story-title",
+            content: ".post-body", author: ".story-byline li",
             published: "time", reference: ".story-title",
-            category: ".categories", others: ".story-image")
-Feed.create(name: "Ruby on rails", url: "https://weblog.rubyonrails.org/feed/atom.xml", story: "entry", summary: "title", content: "content", author: "author", published: "published", reference: "link")
-Feed.create(name: "Tech Crunch", url: "https://techcrunch.com/", isXML: false, story: ".post-block", summary: ".post-block__title", content: ".post-block__content", category: "category", author: ".river-byline__authors", reference: "link", published: "time")
-#Feed.create(name: "Wired", url: "https://www.wired.com/feed/rss", story: "item", author: "creator", content: "description", category: "category", published: "pubDate", reference: "link")
-Feed.create(name: "Gizmodo", url: "https://gizmodo.com/rss", story: "item", content: "description", category: "category", author: "creator", reference: "link", published: "pubDate")
-Feed.create(name: "Digital Trends", url: "https://www.digitaltrends.com/feed/", story: "item", content: "description", category: "category", author: "creator", reference: "link", published: "pubDate")
-Feed.create(name: "Tech Radar", url: "https://www.techradar.com/rss", story: "item", content: "content", category: "category", author: "author", reference: "link", published: "pubDate")
-Feed.create(name: "Tech Meme", url: "https://www.techmeme.com/feed.xml", story: "item", content: "description", category: "category", author: "creator", reference: "link", published: "pubDate")
-Feed.create(name: "Ars Technica", url: "https://arstechnica.com/gadgets/", isXML: false, story: ".article", summary: "header h2", content: ".article-content.post-page p", category: "category", author: ".byline [itemprop=name]", reference: "link", published: "time")
-Feed.create(name: "Venture Beat", url: "https://venturebeat.com/category/big-data/", isXML: false, story: "article", summary: ".article-title-link", content: ".article-content p", category: "category", author: ".article-byline", reference: "link", published: "time")
-Feed.create(name: "CNET", url: "https://www.cnet.com/rss/news/", story: "item", content: "description", category: "category", author: "creator", reference: "link", published: "pubDate")
-Feed.create(name: "Technology News | The New York Times", url: "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml", story: "item", content: "description", category: "category", author: "creator", reference: "link", published: "pubDate")
+            category: "Security", others: ".story-image")
+Feed.create(name: "The next web", url: "https://thenextweb.com/apps/", site: "https://thenextweb.com",
+            story: ".story", summary: ".story-title",
+            content: ".post-body", author: ".story-byline li",
+            published: "time", reference: ".story-title",
+            category: "Apps", others: ".story-image")
+
+Feed.create(name: "Ruby on rails", url: "https://weblog.rubyonrails.org/feed/atom.xml",
+            story: "entry", summary: "title", content: "section",
+            author: "author", published: "published",
+            category: "Ruby", reference: "link")
+
+Feed.create(name: "Tech Crunch", url: "https://techcrunch.com/", isXML: false,
+            story: ".post-block", summary: ".post-block__title",
+            content: ".article-content", category: "News",
+            author: ".river-byline__authors", reference: ".post-block__title",
+            published: "time")
+Feed.create(name: "Tech Radar", url: "https://www.techradar.com/in/",
+            story: ".listingResult", author: ".by-author",
+            content: "#article-body", category: "News",
+            published: "time", reference: ".article-link", summary: ".article-name")
+Feed.create(name: "Digital Trends", url: "https://www.digitaltrends.com/",
+            story: ".m-river--item", content: "#m-content",
+            category: "News", author: ".author",
+            summary: ".m-river--title", reference: ".m-river--title a", published: "time")
+Feed.create(name: "Ars Technica", url: "https://arstechnica.com/gadgets/", isXML: false,
+            story: ".article", summary: "header h2",
+            content: ".article-content.post-page",
+            category: "Gadgets", author: ".byline [itemprop=name]",
+            reference: "header h2 a", published: "time")
+Feed.create(name: "Venture Beat", url: "https://venturebeat.com/category/big-data/", isXML: false,
+            story: "article", summary: ".article-title-link",
+            content: ".article-content", category: "Big Data",
+            author: ".article-byline  .author", reference: ".article-title-link", published: "time")
+Feed.create(name: "Venture Beat", url: "https://venturebeat.com/category/mobile/", isXML: false,
+            story: "article", summary: ".article-title-link",
+            content: ".article-content", category: "Mobile",
+            author: ".article-byline  .author", reference: ".article-title-link", published: "time")
+Feed.create(name: "Venture Beat", url: "https://venturebeat.com/category/ai/", isXML: false,
+            story: "article", summary: ".article-title-link",
+            content: ".article-content", category: "AI",
+            author: ".article-byline  .author", reference: ".article-title-link", published: "time")
+Feed.create(name: "Venture Beat", url: "https://venturebeat.com/category/business/", isXML: false,
+            story: "article", summary: ".article-title-link",
+            content: ".article-content", category: "Business",
+            author: ".article-byline  .author", reference: ".article-title-link", published: "time")
+#Feed.create(name: "CNET", url: "https://www.cnet.com/rss/news/", story: "item", content: "description", category: "category", author: "creator", reference: "link", published: "pubDate")
+#Feed.create(name: "Technology News | The New York Times", url: "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml", story: "item", content: "description", category: "category", author: "creator", reference: "link", published: "pubDate")
