@@ -1,5 +1,4 @@
 class NewsController < ApplicationController
-  before_action :authenticate_via_token
   before_action :set_news, only: [:show, :update, :destroy]
   #before_action :news_feeder_job
 
