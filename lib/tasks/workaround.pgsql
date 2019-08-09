@@ -36,20 +36,27 @@ alter table news drop column title_tokens;
 
 select * from feeds
 
-alter table news add column tokens text;
+alter table news add column duplicate_of varchar;
 
 update news set tokens=array_to_string(tsvector_to_array(to_tsvector(title)),' ','');
 
 select n1.id, n1.title, similarity(n1.tokens,n2.tokens) from news n1, news n2 where n1.id< (select count(id)/2 from news)
 
 
-with median as (select (count(id)/2) + 1 as count from news)
+with median as (select count(id) as count from news)
 , similar_list as( 
-select n1.id, n1.title,n2.title, similarity(n1.tokens,n2.tokens) as rank 
+select n1.id as first,n2.id as second, n1.title,n2.title, 
+similarity(
+  array_to_string(
+    tsvector_to_array(n1.tsv),' ','')
+  ,array_to_string(
+    tsvector_to_array(n2.tsv),' ','')) as rank 
 from news n1, news n2, median m 
-where n1.id< m.count and n2.id> m.count
+where n1.id != n2.id order by n1.id,n2.id
 )
-select * from similar_list where rank > 0.2
+update  news set duplicate_of = second from similar_list where id=first and first < second and rank > 0.25
+
+--select * from similar_list
 
 WITH RECURSIVE t(n) AS (
     VALUES (1)
@@ -89,12 +96,13 @@ from news n1, news n2
 )
 SELECT * FROM search_graph;
 
-select * from news
+select array_to_string(
+    tsvector_to_array(tsv),' ','') from news
 
 select * from feeds
 
 
-update feeds 
+update feeds set image=''
 
 delete from feeds where id =5
 
@@ -106,8 +114,10 @@ select * from feeds
 
 select (content) from news where id = 248
 
-select * from news 
+select * from news order by id
 where 
-order by id
+order by id 
 
 update feeds set story='.c-compact-river__entry' where id=1
+
+update news set duplicate_of=''

@@ -25,6 +25,13 @@ Rails.application.configure do
     config.action_controller.perform_caching = false
 
     config.cache_store = :redis_store
+
+    config.session_store :redis_store, {
+      servers: [
+        { host: ENV["REDIS_HOST"], port: 6379, db: 0 },
+      ],
+      key: "_some_session_key",
+    }
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options)
@@ -51,5 +58,5 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.hosts << "lazy-frog-27.localtunnel.me"
+  config.hosts << "breezy-dragonfly-8.localtunnel.me"
 end

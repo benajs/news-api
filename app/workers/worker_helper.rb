@@ -18,6 +18,17 @@ class Extract
     end
   end
 
+  def get_image(css, link)
+    elem = @content.css(css).attribute("src")
+    if (elem != nil)
+      return elem.text.strip
+    else
+      @full_content = Nokogiri::HTML(open(link))
+      elem = @full_content.css(css).attribute("src")
+      return elem.text.strip
+    end
+  end
+
   def get_datetime(css)
     date_field = @content.css(css)
     if (date_field.attribute("datetime") != nil)
@@ -76,9 +87,13 @@ class Story
     return @feed[:site] || @feed[:url]
   end
 
+  def image
+    return @extract.get_image(@feed[:image], link)
+  end
+
   def write_story
     news_entry = News.new(title: title)
-    news_entry.update_attributes!(content: content, author: author, category: category, url: link, published: published, source: source)
+    news_entry.update_attributes!(content: content, author: author, category: category, url: link, published: published, source: source, image: image)
   end
 end
 
@@ -95,7 +110,6 @@ class Feeder
   end
 
   def parse_first_feed
-    # @sites.each do |feed|
     feed = Feed.find(1)
     doc = Nokogiri::HTML(open(feed[:url]))
     entry = doc.css(feed[:story]).first
