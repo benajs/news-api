@@ -34,5 +34,8 @@ module NewsApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     config.active_job.queue_adapter = :sidekiq
+
+    # Structure instead of schema to use tokens
+    config.active_record.schema_format = :sql
   end
 end
