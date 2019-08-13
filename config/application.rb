@@ -37,5 +37,8 @@ module NewsApi
 
     # Structure instead of schema to use tokens
     config.active_record.schema_format = :sql
+
+    # Cookie management
+    config.middleware.use ActionDispatch::Cookies
   end
 end
