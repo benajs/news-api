@@ -4,7 +4,7 @@ class NewsController < ApplicationController
 
   # GET /news
   def index
-    @news = News.pluck(:id, :title, :image, :author, :published)
+    @news = News.all.as_json(only: [:id, :title, :image, :author, :published])
     render json: @news
   end
 
