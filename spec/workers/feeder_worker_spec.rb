@@ -35,5 +35,9 @@ feeds.each do |feed|
     it "Feed has image in it " + feed[:name] do
       expect(story.image).not_to be_empty
     end
+
+    it "Feed has Category in it " + feed[:name] do
+      expect(story.category).not_to be_empty
+    end
   end
 end
