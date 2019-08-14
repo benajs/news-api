@@ -1,12 +1,10 @@
 class NewsController < ApplicationController
   before_action :set_news, only: [:show, :update, :destroy]
   #before_action :news_feeder_job
-  before_action :authenticate_user
 
   # GET /news
   def index
-    @news = News.all
-
+    @news = News.pluck(:id, :title, :image, :author, :published)
     render json: @news
   end
 
