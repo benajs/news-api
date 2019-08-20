@@ -1,6 +1,5 @@
 class FeederWorker
   include Sidekiq::Worker
-  require "open-uri"
   require "worker_helper.rb"
 
   sql = "with median as (select count(id) as count from news)

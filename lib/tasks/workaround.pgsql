@@ -108,16 +108,19 @@ delete from feeds where id =5
 
 select * from news order by id
 
-delete from  news
+delete from  news where image 
+like '%data:image%'
 
 select * from feeds
 
 select (content) from news where id = 248
 
-select * from news order by id
-where 
+select * from news 
+where image =''
 order by id 
 
 update feeds set story='.c-compact-river__entry' where id=1
 
 update news set duplicate_of=''
+
+insert into news (id,title,author,image,published,created_at,updated_at) values (1,'Sample news','bena','https://flutter.dev/assets/ui/layout/card-flutter-gallery-184963eb23d8824ef3df612a6b40205ed113e7c00da98fa22228cc6e6f619d88.png',CURRENT_TIMESTAMP ,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);

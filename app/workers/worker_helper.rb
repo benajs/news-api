@@ -1,3 +1,4 @@
+require "open-uri"
 
 class Extract
   def initialize(content)
@@ -25,7 +26,11 @@ class Extract
     else
       @full_content = Nokogiri::HTML(open(link))
       elem = @full_content.css(css).attribute("src")
-      return elem.text.strip
+      if (elem != nil)
+        return elem.text
+      else
+        return ""
+      end
     end
   end
 
