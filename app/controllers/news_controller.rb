@@ -4,7 +4,9 @@ class NewsController < ApplicationController
 
   # GET /news
   def index
-    @news = News.pluck(:id, :title, :image, :author, :published)
+    @news = News.where("duplicate_of is null")
+    #.as_json(only: [:id, :title, :image, :author, :published, :category, :content])
+
     render json: @news
   end
 
